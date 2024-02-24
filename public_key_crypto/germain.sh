@@ -1,0 +1,1 @@
+openssl dhparam -out keyfile 2048 2> /dev/null && openssl asn1parse -in keyfile > foo && awk 'NR ==2 {print substr ($0,49,570)}' foo > foo_2 && rm foo && for n in $(cat foo_2 | tr 'a-f' 'A-F'); do echo "obase =10;ibase =16; $n"|bc;done; rm keyfile foo_2
